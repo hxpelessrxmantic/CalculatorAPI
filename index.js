@@ -14,6 +14,9 @@ app.get('/sum', (req,res) =>{
     let x = req.body.firstNum;
     let y = req.body.secondNum;
     let z = x+y;
+    if(z==0){
+        res.status(200).send({"Sum":z});
+    }
     if(!z){
         res.status(400).send({"Error":"Request does not have numbers"});
     }
@@ -27,8 +30,11 @@ app.get('/diff', (req,res) =>{
     let x = req.body.firstNum;
     let y = req.body.secondNum;
     let z = x-y;
-    
-    if(!z){
+    console.log(z);
+    if(z==0){
+        res.status(200).send({"Difference":z});
+    }
+    else if(!z){
         res.status(400).send({"Error":"Request does not have numbers"});
     }
     else{
@@ -41,7 +47,9 @@ app.get('/prod', (req,res) =>{
     let x = req.body.firstNum;
     let y = req.body.secondNum;
     let z = x*y;
-   
+    if(z==0){
+        res.status(200).send({"Product":z});
+    }
     if(!z){
         res.status(400).send({"Error":"Request does not have numbers"});
     }
@@ -55,8 +63,14 @@ app.get('/div', (req,res) =>{
     let x = req.body.firstNum;
     let y = req.body.secondNum;
     let z = x/y;
- 
-    if(!z){
+    console.log(z);
+    if(y==0){
+        res.status(400).send({"Error":"Can't be divided by 0"});
+    }
+    else if(z==0){
+        res.status(200).send({"Quotient":z});
+    }
+    else if(!z){
         res.status(400).send({"Error":"Request does not have numbers"});
     }
     else{
